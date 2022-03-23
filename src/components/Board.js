@@ -2,7 +2,7 @@ import React from 'react';
 
 function Board() {
   return (
-    <h1>Hello!</h1>
+    <div></div>
   )
 }
 
