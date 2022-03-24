@@ -2,13 +2,14 @@ import React from 'react';
 
 export default class Cell extends React.Component {
 
-  markCell = () => {
+  markCell = (e) => {
+    console.log(e.target)
     this.props.markCell()
   }
 
   render() {
     return (
-      <div className="board__cell" onClick={this.markCell}></div>
+      <div className={`board__cell ${this.props.className}`} onClick={this.markCell}></div>
     )
   }
 }
