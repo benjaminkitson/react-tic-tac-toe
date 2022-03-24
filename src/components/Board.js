@@ -4,9 +4,9 @@ import Row from './Row';
 function Board() {
   return (
     <div className="board">
-      <Row />
-      <Row />
-      <Row />
+      <Row id="R1"/>
+      <Row id="R2"/>
+      <Row id="R3"/>
     </div>
   )
 }
