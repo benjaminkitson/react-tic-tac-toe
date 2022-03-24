@@ -15,8 +15,10 @@ export default class Content extends React.Component {
     crossesTurn: true
   };
 
-  markCell(row, col) {
+  markCell = (row, col) => {
     console.log(row, col);
+    this.setState((prevState) => ({ crossesTurn: !prevState.crossesTurn }))
+    console.log(this.state)
   };
 
   componentDidMount() {
