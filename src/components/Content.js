@@ -15,8 +15,8 @@ export default class Content extends React.Component {
     crossesTurn: true
   };
 
-  markCell() {
-    console.log("hello")
+  markCell(row, col) {
+    console.log(row, col);
   };
 
   componentDidMount() {
@@ -35,7 +35,7 @@ export default class Content extends React.Component {
     return (
       <div className="content">
         <h1>Tic-Tac-Toe!</h1>
-        <Board markCell={this.markCell}/>
+        <Board markCell={this.markCell} crossesTurn={this.state.crossesTurn}/>
       </div>
     );
   };

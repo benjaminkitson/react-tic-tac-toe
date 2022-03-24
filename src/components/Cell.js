@@ -5,7 +5,8 @@ export default class Cell extends React.Component {
   markCell = (e) => {
     const row = this.props.row;
     const col = this.props.col;
-    this.props.markCell()
+    this.props.markCell(row, col);
+    console.log(this.props.crossesTurn)
   }
 
   render() {
