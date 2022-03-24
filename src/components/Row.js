@@ -4,7 +4,7 @@ import Cell from './Cell';
 function Row(props) {
   return (
     <div className="board__row" id={props.id}>
-      {props.cells.map((cell, i) => (<Cell col={i.toString()} markCell={props.markCell} crossesTurn={props.crossesTurn} row={props.row}/>))}
+      {props.cells.map((cell, i) => (<Cell col={i.toString()} content={cell} markCell={props.markCell} crossesTurn={props.crossesTurn} row={props.row}/>))}
     </div>
   );
 };
