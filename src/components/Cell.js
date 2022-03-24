@@ -11,7 +11,7 @@ export default class Cell extends React.Component {
 
   render() {
     return (
-      <div className={`board__cell ${this.props.className}`} onClick={this.markCell}></div>
+      <div className={`board__cell`} onClick={this.markCell}></div>
     );
   };
 };
