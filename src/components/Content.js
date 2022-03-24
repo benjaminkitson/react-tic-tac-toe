@@ -5,7 +5,8 @@ export default class Content extends React.Component {
 
   state = {
     players: undefined,
-    winner: undefined
+    winner: undefined,
+    board: [[[], [], []], [[], [], []], [[], [], []]]
   };
 
   componentDidMount() {
