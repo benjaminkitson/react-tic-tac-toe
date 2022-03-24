@@ -1,10 +1,10 @@
 import React from 'react';
-import Cell from './Cell';
+import Row from './Row';
 
 function Board() {
   return (
     <div className="board">
-      <Cell />
+      <Row />
     </div>
   )
 }
