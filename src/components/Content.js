@@ -17,19 +17,19 @@ export default class Content extends React.Component {
 
   markCell() {
     console.log("hello")
-  }
+  };
 
   componentDidMount() {
     // To complete later (localStorage etc)
-  }
+  };
 
   componentDidUpdate(prevState, prevProps) {
     // To complete later (localStorage etc)
-  }
+  };
 
   componentWillUnmount() {
     // To complete later (localStorage etc)
-  }
+  };
 
   render() {
     return (
@@ -38,5 +38,5 @@ export default class Content extends React.Component {
         <Board markCell={this.markCell}/>
       </div>
     );
-  }
-}
+  };
+};
