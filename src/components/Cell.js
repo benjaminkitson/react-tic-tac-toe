@@ -2,7 +2,7 @@ import React from 'react';
 
 function Cell() {
   return (
-    <div>le cell</div>
+    <div className="board__cell"></div>
   )
 }
 
