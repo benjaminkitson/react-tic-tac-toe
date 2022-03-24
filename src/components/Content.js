@@ -6,8 +6,18 @@ export default class Content extends React.Component {
   state = {
     players: undefined,
     winner: undefined,
-    board: [[[], [], []], [[], [], []], [[], [], []]]
+    board:
+      [
+        [[], [], []],
+        [[], [], []],
+        [[], [], []]
+      ],
+    crossesTurn: true
   };
+
+  markCell() {
+    console.log("hello")
+  }
 
   componentDidMount() {
     // To complete later (localStorage etc)
@@ -25,7 +35,7 @@ export default class Content extends React.Component {
     return (
       <div className="content">
         <h1>Tic-Tac-Toe!</h1>
-        <Board />
+        <Board markCell={this.markCell}/>
       </div>
     );
   }
