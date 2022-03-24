@@ -1,5 +1,7 @@
 @import './base/settings';
 @import './base/_base';
+@import './components/board';
+@import './components/cell'
 
 
 // Dummy class to hide the annoying webpack overlay
