@@ -3,7 +3,7 @@ import Cell from './Cell';
 
 function Board() {
   return (
-    <div>
+    <div className="board">
       <Cell />
     </div>
   )
