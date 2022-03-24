@@ -5,6 +5,8 @@ function Board() {
   return (
     <div className="board">
       <Row />
+      <Row />
+      <Row />
     </div>
   )
 }
