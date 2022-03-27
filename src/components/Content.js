@@ -15,6 +15,23 @@ export default class Content extends React.Component {
     crossesTurn: true
   };
 
+  // Endgame board states:
+
+  // Rows equal
+  // board[0][0] === board[0][1] && board[0][0] === board[0][2]
+  // board[1][0] === board[1][1] && board[1][0] === board[1][2]
+  // board[2][0] === board[2][1] && board[2][0] === board[2][2]
+
+  // Columns equal
+  // board[0][0] === board[1][0] && board[0][0] === board[2][0]
+  // board[0][1] === board[1][1] && board[0][1] === board[2][1]
+  // board[0][2] === board[1][2] && board[0][2] === board[2][2]
+
+  // Diagonals
+  // board[0][0] === board[1][1] && board[0][0] === board[2][2]
+  // board[0][2] === board[1][1] && board[0[2] === board[2][0]
+  //
+
   markCell = (row, col) => {
     console.log(row, col);
     if (this.state.board[row][col] === undefined) {
