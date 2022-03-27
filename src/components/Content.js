@@ -12,25 +12,11 @@ export default class Content extends React.Component {
         [undefined, undefined, undefined],
         [undefined, undefined, undefined]
       ],
-    crossesTurn: true
+    crossesTurn: true,
   };
 
-  // Endgame board states:
 
-  // Rows equal
-  // board[0][0] === board[0][1] && board[0][0] === board[0][2]
-  // board[1][0] === board[1][1] && board[1][0] === board[1][2]
-  // board[2][0] === board[2][1] && board[2][0] === board[2][2]
 
-  // Columns equal
-  // board[0][0] === board[1][0] && board[0][0] === board[2][0]
-  // board[0][1] === board[1][1] && board[0][1] === board[2][1]
-  // board[0][2] === board[1][2] && board[0][2] === board[2][2]
-
-  // Diagonals
-  // board[0][0] === board[1][1] && board[0][0] === board[2][2]
-  // board[0][2] === board[1][1] && board[0[2] === board[2][0]
-  //
 
   markCell = (row, col) => {
     console.log(row, col);
@@ -42,6 +28,25 @@ export default class Content extends React.Component {
     } else {
       console.log("invalid")
     }
+    const endConditions = [
+        // Rows equal
+      this.state.board[0][0] && this.state.board[0][0] === this.state.board[0][1] && this.state.board[0][0] === this.state.board[0][2],
+      this.state.board[1][0] && this.state.board[1][0] === this.state.board[1][1] && this.state.board[1][0] === this.state.board[1][2],
+      this.state.board[2][0] && this.state.board[2][0] === this.state.board[2][1] && this.state.board[2][0] === this.state.board[2][2],
+      // Columns equal
+      this.state.board[0][0] && this.state.board[0][0] === this.state.board[1][0] && this.state.board[0][0] === this.state.board[2][0],
+      this.state.board[0][1] && this.state.board[0][1] === this.state.board[1][1] && this.state.board[0][1] === this.state.board[2][1],
+      this.state.board[0][2] && this.state.board[0][2] === this.state.board[1][2] && this.state.board[0][2] === this.state.board[2][2],
+      // Diagonals
+      this.state.board[0][0] && this.state.board[0][0] === this.state.board[1][1] && this.state.board[0][0] === this.state.board[2][2],
+      this.state.board[0][2] && this.state.board[0][2] === this.state.board[1][1] && this.state.board[0][2] === this.state.board[2][0]
+      ]
+    endConditions.every((condition) => {
+      if (condition) {
+        console.log(`${this.state.crossesTurn ? "X" : "O"} Wins!`);
+      }
+      return !condition
+    });
   };
 
   componentDidMount() {
