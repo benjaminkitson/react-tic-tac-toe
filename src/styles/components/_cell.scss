@@ -3,4 +3,11 @@
   height: 100%;
   border: 2px solid rgb(78, 78, 78);
   border-radius: 1vw;
+  transition: background 0.2s;
+}
+
+.board__cell:hover {
+  background: rgb(192, 192, 192);
+  cursor: pointer;
+  transition: background 0.2s;
 }
