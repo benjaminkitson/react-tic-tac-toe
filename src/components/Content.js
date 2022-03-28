@@ -59,6 +59,10 @@ export default class Content extends React.Component {
     })
   }
 
+  statusText = () => {
+
+  }
+
   componentDidMount() {
     // To complete later (localStorage etc)
   };
@@ -76,6 +80,7 @@ export default class Content extends React.Component {
       <div className="content">
         <Modal gameOver={this.state.gameOver} crossesTurn={this.state.crossesTurn} resetGame={this.resetGame}/>
         <h1>Tic-Tac-Toe!</h1>
+        <h1>{this.statusText()}</h1>
         <Board markCell={this.markCell} crossesTurn={this.state.crossesTurn} board={this.state.board}/>
       </div>
     );
