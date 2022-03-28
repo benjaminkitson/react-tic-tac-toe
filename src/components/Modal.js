@@ -6,6 +6,7 @@ export default class Modal extends React.Component {
       <div className={`modal ${this.props.gameOver ? '' : 'modal--hidden'}`}>
         <div className="modal__content">
           <h1>{`${!this.props.crossesTurn ? "X" : "O"}`} Wins!</h1>
+          <button onClick={ this.resetGame }>Play again</button>
         </div>
       </div>
     );
