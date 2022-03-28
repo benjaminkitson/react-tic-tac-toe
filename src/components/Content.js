@@ -86,7 +86,6 @@ export default class Content extends React.Component {
   render() {
     return (
       <div className="content">
-        <Modal gameOver={this.state.gameOver} crossesTurn={this.state.crossesTurn} resetGame={this.resetGame}/>
         <h1>Tic-Tac-Toe!</h1>
         <div><h1 className="status">{this.statusText()}</h1></div>
         <Board markCell={this.markCell} crossesTurn={this.state.crossesTurn} board={this.state.board}/>
