@@ -18,12 +18,10 @@ export default class Content extends React.Component {
   };
 
   markCell = (row, col) => {
-    console.log(row, col);
     if (this.state.board[row][col] === undefined) {
       const newBoard = this.state.board;
       newBoard[row][col] = this.state.crossesTurn ? "X" : "O";
       this.setState((prevState) => ({ crossesTurn: !prevState.crossesTurn, board: newBoard }));
-      console.log(this.state.board);
     } else {
       console.log("invalid")
     }
@@ -44,6 +42,8 @@ export default class Content extends React.Component {
     endConditions.every((condition) => {
       if (condition) {
         console.log(`${this.state.crossesTurn ? "X" : "O"} Wins!`);
+        this.setState(() => ({ gameOver: true }));
+        console.log(this.state.gameOver)
       }
       return !condition
     });
