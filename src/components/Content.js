@@ -14,6 +14,7 @@ export default class Content extends React.Component {
         [undefined, undefined, undefined]
       ],
     crossesTurn: true,
+    gameOver: false
   };
 
 
