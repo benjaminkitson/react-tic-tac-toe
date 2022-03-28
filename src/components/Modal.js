@@ -2,7 +2,7 @@ import React from 'react';
 
 function Modal(props) {
   return (
-    <div>
+    <div className="modal">
       <h1>Hello!</h1>
     </div>
   );
