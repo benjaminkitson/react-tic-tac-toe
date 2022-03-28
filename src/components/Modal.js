@@ -1,13 +1,13 @@
 import React from 'react';
 
-function Modal(props) {
-  return (
-    <div className="modal">
-      <div className="modal__content">
-        <h1>Hello!</h1>
+export default class Modal extends React.Component {
+  render() {
+    return (
+      <div className="modal">
+        <div className="modal__content">
+          <h1>Hello!</h1>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 };
-
-export default Modal
