@@ -17,9 +17,6 @@ export default class Content extends React.Component {
     gameOver: false
   };
 
-
-
-
   markCell = (row, col) => {
     console.log(row, col);
     if (this.state.board[row][col] === undefined) {
@@ -67,7 +64,7 @@ export default class Content extends React.Component {
   render() {
     return (
       <div className="content">
-        <Modal />
+        <Modal gameOver={this.gameOver} crossesTurn={this.state.crossesTurn}/>
         <h1>Tic-Tac-Toe!</h1>
         <Board markCell={this.markCell} crossesTurn={this.state.crossesTurn} board={this.state.board}/>
       </div>
