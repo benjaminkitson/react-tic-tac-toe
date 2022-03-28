@@ -13,7 +13,7 @@ export default class Cell extends React.Component {
   render() {
     return (
       <div
-        className={`board__cell`}
+        className={`board__cell ${this.props.gameOver ? '' : 'board__cell--in-progress'}`}
         onClick={this.markCell}
         gameOver={this.props.gameOver}
       >{this.props.content}</div>

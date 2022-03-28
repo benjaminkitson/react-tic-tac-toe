@@ -55,8 +55,8 @@ export default class Content extends React.Component {
           [undefined, undefined, undefined]
         ],
       crossesTurn: true,
-    })
-  }
+    });
+  };
 
   statusText = () => {
     if (this.state.gameOver) {
@@ -68,7 +68,7 @@ export default class Content extends React.Component {
     } else {
       return this.state.crossesTurn ? "Next Player: X" : "Next Player: O"
     }
-  }
+  };
 
   componentDidMount() {
     // To complete later (localStorage etc)
@@ -87,7 +87,12 @@ export default class Content extends React.Component {
       <div className="content">
         <h1>Tic-Tac-Toe!</h1>
         <div><h1 className="status">{this.statusText()}</h1></div>
-        <Board markCell={this.markCell} crossesTurn={this.state.crossesTurn} board={this.state.board} gameOver={this.state.gameOver}/>
+        <Board
+          markCell={this.markCell}
+          crossesTurn={this.state.crossesTurn}
+          board={this.state.board}
+          gameOver={this.state.gameOver}
+        />
       </div>
     );
   };
