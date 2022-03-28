@@ -41,9 +41,7 @@ export default class Content extends React.Component {
       ]
     endConditions.every((condition) => {
       if (condition) {
-        console.log(`${this.state.crossesTurn ? "X" : "O"} Wins!`);
-        this.setState(() => ({ gameOver: true }));
-        console.log(this.state.gameOver)
+        this.setState({ gameOver: true });
       }
       return !condition
     });
@@ -64,7 +62,7 @@ export default class Content extends React.Component {
   render() {
     return (
       <div className="content">
-        <Modal gameOver={this.gameOver} crossesTurn={this.state.crossesTurn}/>
+        <Modal gameOver={this.state.gameOver} crossesTurn={this.state.crossesTurn}/>
         <h1>Tic-Tac-Toe!</h1>
         <Board markCell={this.markCell} crossesTurn={this.state.crossesTurn} board={this.state.board}/>
       </div>
