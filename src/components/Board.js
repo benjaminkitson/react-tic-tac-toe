@@ -7,9 +7,9 @@ function Board(props) {
       {props.board.map((row, i) => (
         <Row
           row={i.toString()}
-          markCell={props.markCell}
+          markSquare={props.markSquare}
           crossesTurn={props.crossesTurn}
-          cells={row}
+          squares={row}
           gameOver={props.gameOver}
         />))}
     </div>

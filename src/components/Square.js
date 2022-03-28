@@ -1,20 +1,20 @@
 import React from 'react';
 
-export default class Cell extends React.Component {
+export default class Square extends React.Component {
 
-  markCell = () => {
+  markSquare = () => {
     if (!this.props.gameOver) {
       const row = this.props.row;
       const col = this.props.col;
-      this.props.markCell(row, col);
+      this.props.markSquare(row, col);
     }
   };
 
   render() {
     return (
       <div
-        className={`board__cell ${this.props.gameOver ? '' : 'board__cell--in-progress'}`}
-        onClick={this.markCell}
+        className={`board__square ${this.props.gameOver ? '' : 'board__square--in-progress'}`}
+        onClick={this.markSquare}
         gameOver={this.props.gameOver}
       >{this.props.content}</div>
     );

@@ -1,4 +1,4 @@
-.board__cell {
+.board__square {
   width: 30%;
   height: 100%;
   border: 2px solid rgb(78, 78, 78);
@@ -11,7 +11,7 @@
   font-weight: 100;
 }
 
-.board__cell--in-progress:hover {
+.board__square--in-progress:hover {
   background: rgb(192, 192, 192);
   cursor: pointer;
   transition: background 0.2s;

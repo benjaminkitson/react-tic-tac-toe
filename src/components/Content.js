@@ -15,7 +15,7 @@ export default class Content extends React.Component {
     gameOver: false
   };
 
-  markCell = (row, col) => {
+  markSquare = (row, col) => {
     if (this.state.board[row][col] === undefined) {
       const newBoard = this.state.board;
       newBoard[row][col] = this.state.crossesTurn ? "X" : "O";
@@ -88,7 +88,7 @@ export default class Content extends React.Component {
         <h1>Tic-Tac-Toe!</h1>
         <div><h1 className="status">{this.statusText()}</h1></div>
         <Board
-          markCell={this.markCell}
+          markSquare={this.markSquare}
           crossesTurn={this.state.crossesTurn}
           board={this.state.board}
           gameOver={this.state.gameOver}

@@ -1,14 +1,14 @@
 import React from 'react';
-import Cell from './Cell';
+import Square from './Square';
 
 function Row(props) {
   return (
     <div className="board__row" id={props.id}>
-      {props.cells.map((cell, i) => (
-        <Cell
+      {props.squares.map((square, i) => (
+        <Square
           col={i.toString()}
-          content={cell}
-          markCell={props.markCell}
+          content={square}
+          markSquare={props.markSquare}
           crossesTurn={props.crossesTurn}
           row={props.row}
           gameOver={props.gameOver}
