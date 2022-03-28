@@ -60,7 +60,15 @@ export default class Content extends React.Component {
   }
 
   statusText = () => {
-
+    if (this.state.gameOver) {
+      if (this.state.board.flat().every((square) => square)) {
+        return "Tie!"
+      } else {
+        return this.state.crossesTurn ? "Winner: O" : "Winner: X"
+      }
+    } else {
+      return this.state.crossesTurn ? "Next Player: X" : "Next Player: O"
+    }
   }
 
   componentDidMount() {
