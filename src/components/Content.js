@@ -1,5 +1,7 @@
 import React from 'react';
 import Board from './Board';
+import Status from './Status';
+
 
 export default class Content extends React.Component {
 
@@ -86,7 +88,11 @@ export default class Content extends React.Component {
     return (
       <div className="content">
         <h1>Tic-Tac-Toe!</h1>
-        <div className="info"><h1 className="status">{this.statusText()}</h1><button className="reset" onClick={this.resetGame}>Reset</button></div>
+        <Status
+          className="info"
+          statusText={this.statusText}
+          resetGame={this.resetGame}
+        />
         <Board
           markSquare={this.markSquare}
           crossesTurn={this.state.crossesTurn}
