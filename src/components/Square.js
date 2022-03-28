@@ -13,7 +13,7 @@ export default class Square extends React.Component {
   render() {
     return (
       <div
-        className={`board__square ${this.props.gameOver ? '' : 'board__square--in-progress'}`}
+        className={`board__square ${this.props.gameOver ? '' : 'board__square--in-progress'} square`}
         onClick={this.markSquare}
         gameOver={this.props.gameOver}
       >{this.props.content}</div>
