@@ -1,5 +1,6 @@
 import React from 'react';
 import Board from './Board';
+import Modal from './Modal';
 
 export default class Content extends React.Component {
 
@@ -65,6 +66,7 @@ export default class Content extends React.Component {
   render() {
     return (
       <div className="content">
+        <Modal />
         <h1>Tic-Tac-Toe!</h1>
         <Board markCell={this.markCell} crossesTurn={this.state.crossesTurn} board={this.state.board}/>
       </div>
