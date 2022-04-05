@@ -6,7 +6,7 @@ import Modal from './Modal';
 
 function Content() {
 
-    // const [players, setPlayers] = useState(undefined);
+    const [players, setPlayers] = useState(undefined);
     const [board, setBoard] = useState([
       [undefined, undefined, undefined],
       [undefined, undefined, undefined],
@@ -85,7 +85,10 @@ function Content() {
         board={board}
         gameOver={gameOver}
       />
-      <Modal />
+      <Modal
+        setPlayers={setPlayers}
+        players={players}
+      />
     </div>
   );
 };

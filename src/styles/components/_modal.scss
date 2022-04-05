@@ -6,20 +6,32 @@
   left: 0;
   z-index: 1;
   background-color: rgba(50, 50, 50, 0.1);
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
 }
 
-
 .modal__content {
-  height: 300px;
+  height: 400px;
   width: 500px;
   background-color: rgb(237, 237, 237);
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
+  flex-direction: column;
   border-radius: 20px;
   border: 2px solid rgb(212, 212, 212);
   font-size: 30px;
+  padding: 30px;
+}
+
+.modal__players-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.modal--visible {
+  display: flex;
 }
