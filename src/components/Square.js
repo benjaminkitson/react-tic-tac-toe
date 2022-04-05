@@ -1,22 +1,22 @@
 import React from 'react';
 
-export default class Square extends React.Component {
+function Square(props) {
 
-  markSquare = () => {
-    if (!this.props.gameOver) {
-      const row = this.props.row;
-      const col = this.props.col;
-      this.props.markSquare(row, col);
+  const markSquare = () => {
+    if (!props.gameOver) {
+      const row = props.row;
+      const col = props.col;
+      props.markSquare(row, col);
     }
   };
 
-  render() {
-    return (
-      <div
-        className={`board__square ${this.props.gameOver ? '' : 'board__square--in-progress'} square`}
-        onClick={this.markSquare}
-        gameOver={this.props.gameOver}
-      >{this.props.content}</div>
-    );
-  };
+  return (
+    <div
+      className={`board__square ${props.gameOver ? '' : 'board__square--in-progress'} square`}
+      onClick={markSquare}
+      gameOver={props.gameOver}
+    >{props.content}</div>
+  );
 };
+
+export default Square;
