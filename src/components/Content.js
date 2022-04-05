@@ -1,31 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Board from './Board';
 import Status from './Status';
 
 
-export default class Content extends React.Component {
+function Content() {
 
-  state = {
-    players: undefined,
-    board:
-      [
-        [undefined, undefined, undefined],
-        [undefined, undefined, undefined],
-        [undefined, undefined, undefined]
-      ],
-    crossesTurn: true,
-    gameOver: false
-  };
+    const [players, setPlayers] = useState(undefined);
+    const [board, setBoard] = useState([
+      [undefined, undefined, undefined],
+      [undefined, undefined, undefined],
+      [undefined, undefined, undefined]
+    ],)
+
+    const [crossesTurn, setCrossesTurn] = useState(true);
+    const [gameOver, setGameOver] = useState(true);
+
 
   markSquare = (row, col) => {
-    if (this.state.board[row][col] === undefined) {
-      const newBoard = this.state.board;
-      newBoard[row][col] = this.state.crossesTurn ? "X" : "O";
-      this.setState((prevState) => ({ crossesTurn: !prevState.crossesTurn, board: newBoard }));
+    if (board[row][col] === undefined) {
+      const newBoard = board;
+      newBoard[row][col] = crossesTurn ? "X" : "O";
+      setCrossesTurn(!crossesTurn);
+      setBoard(newBoard);
     } else {
       console.log("invalid")
     }
-    const board = this.state.board
+
     const endConditions = [
         // Rows equal
       board[0][0] && board[0][0] === board[0][1] && board[0][0] === board[0][2],
@@ -41,65 +41,52 @@ export default class Content extends React.Component {
       ]
     endConditions.every((condition) => {
       if (condition) {
-        this.setState({ gameOver: true });
+        setGameOver(true);
       }
       return !condition
     });
   };
 
   resetGame = () => {
-    this.setState({
-      gameOver: false,
-      board:
+      setGameOver(false);
+      setBoard(
         [
           [undefined, undefined, undefined],
           [undefined, undefined, undefined],
           [undefined, undefined, undefined]
-        ],
-      crossesTurn: true,
-    });
+        ]
+      );
+      setCrossesTurn(true);
   };
 
   statusText = () => {
-    if (this.state.gameOver) {
-      if (this.state.board.flat().every((square) => square)) {
+    if (gameOver) {
+      if (board.flat().every((square) => square)) {
         return "Tie!"
       } else {
-        return this.state.crossesTurn ? "Winner: O" : "Winner: X"
+        return crossesTurn ? "Winner: O" : "Winner: X"
       }
     } else {
-      return this.state.crossesTurn ? "Next Player: X" : "Next Player: O"
+      return crossesTurn ? "Next Player: X" : "Next Player: O"
     }
   };
 
-  componentDidMount() {
-    // To complete later (localStorage etc)
-  };
-
-  componentDidUpdate(prevState, prevProps) {
-    // To complete later (localStorage etc)
-  };
-
-  componentWillUnmount() {
-    // To complete later (localStorage etc)
-  };
-
-  render() {
-    return (
-      <div className="content">
-        <h1>Tic-Tac-Toe!</h1>
-        <Status
-          className="info"
-          statusText={this.statusText}
-          resetGame={this.resetGame}
-        />
-        <Board
-          markSquare={this.markSquare}
-          crossesTurn={this.state.crossesTurn}
-          board={this.state.board}
-          gameOver={this.state.gameOver}
-        />
-      </div>
-    );
-  };
+  return (
+    <div className="content">
+      <h1>Tic-Tac-Toe!</h1>
+      <Status
+        className="info"
+        statusText={this.statusText}
+        resetGame={this.resetGame}
+      />
+      <Board
+        markSquare={this.markSquare}
+        crossesTurn={this.state.crossesTurn}
+        board={this.state.board}
+        gameOver={this.state.gameOver}
+      />
+    </div>
+  );
 };
+
+export default Content;
