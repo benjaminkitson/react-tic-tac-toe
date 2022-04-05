@@ -24,8 +24,14 @@ function Content() {
     if (players === '1' && !crossesTurn) {
       let cpuMarked = false
       while (cpuMarked === false) {
-        const cpuCol = Math.floor(Math.random() * 3)
-        const cpuRow = Math.floor(Math.random() * 3)
+        let cpuRow;
+        let cpuCol;
+        if (!board[1][1]) {
+          [cpuRow, cpuCol] = [1,1];
+        } else {
+          cpuRow = Math.floor(Math.random() * 3);
+          cpuCol = Math.floor(Math.random() * 3);
+        }
         if (board[cpuRow][cpuCol] === undefined) {
           const newBoard = board;
           cpuMarked = true;
