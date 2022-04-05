@@ -5,7 +5,7 @@ import Status from './Status';
 
 function Content() {
 
-    const [players, setPlayers] = useState(undefined);
+    // const [players, setPlayers] = useState(undefined);
     const [board, setBoard] = useState([
       [undefined, undefined, undefined],
       [undefined, undefined, undefined],
@@ -13,10 +13,9 @@ function Content() {
     ],)
 
     const [crossesTurn, setCrossesTurn] = useState(true);
-    const [gameOver, setGameOver] = useState(true);
+    const [gameOver, setGameOver] = useState(false);
 
-
-  markSquare = (row, col) => {
+  const markSquare = (row, col) => {
     if (board[row][col] === undefined) {
       const newBoard = board;
       newBoard[row][col] = crossesTurn ? "X" : "O";
@@ -47,7 +46,7 @@ function Content() {
     });
   };
 
-  resetGame = () => {
+  const resetGame = () => {
       setGameOver(false);
       setBoard(
         [
@@ -59,7 +58,7 @@ function Content() {
       setCrossesTurn(true);
   };
 
-  statusText = () => {
+  const statusText = () => {
     if (gameOver) {
       if (board.flat().every((square) => square)) {
         return "Tie!"
@@ -76,14 +75,14 @@ function Content() {
       <h1>Tic-Tac-Toe!</h1>
       <Status
         className="info"
-        statusText={this.statusText}
-        resetGame={this.resetGame}
+        statusText={statusText}
+        resetGame={resetGame}
       />
       <Board
-        markSquare={this.markSquare}
-        crossesTurn={this.state.crossesTurn}
-        board={this.state.board}
-        gameOver={this.state.gameOver}
+        markSquare={markSquare}
+        crossesTurn={crossesTurn}
+        board={board}
+        gameOver={gameOver}
       />
     </div>
   );
