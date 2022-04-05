@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Board from './Board';
 import Status from './Status';
+import Modal from './Modal';
 
 
 function Content() {
@@ -84,6 +85,7 @@ function Content() {
         board={board}
         gameOver={gameOver}
       />
+      <Modal />
     </div>
   );
 };
