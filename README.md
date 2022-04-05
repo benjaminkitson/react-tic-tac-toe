@@ -1,1 +1,1 @@
-A basic tic-tac-toe app made in React - still very much a work in progress. This will initially only support two users playing against eachother, with a view to implementing a very basic computer opponent against which a single user can play.
+A basic tic-tac-toe app made in React - still a work in progress. This currently only supports two users playing against eachother, with a view to implementing a very basic computer opponent against which a single user can play. It'll also need some more modern React features implemented, such as hooks and the context API.
