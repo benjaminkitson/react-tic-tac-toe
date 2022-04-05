@@ -12,6 +12,7 @@ function Row(props) {
           crossesTurn={props.crossesTurn}
           row={props.row}
           gameOver={props.gameOver}
+          players={props.players}
         />))}
     </div>
   );

@@ -11,6 +11,7 @@ function Board(props) {
           crossesTurn={props.crossesTurn}
           squares={row}
           gameOver={props.gameOver}
+          players={props.players}
         />))}
     </div>
   );

@@ -3,7 +3,7 @@ import React from 'react';
 function Square(props) {
 
   const markSquare = () => {
-    if (!props.gameOver) {
+    if (!props.gameOver && !(props.players === '1' && !props.crossesTurn)) {
       const row = props.row;
       const col = props.col;
       props.markSquare(row, col);
