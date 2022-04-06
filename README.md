@@ -1,3 +1,5 @@
+#React Tic-Tac-Toe
+
 A Tic-Tac-Toe web app!
 
 The app supports both one and two players, with a cpu opponent in one-player mode.
