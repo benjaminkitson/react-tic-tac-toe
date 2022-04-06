@@ -1,4 +1,4 @@
-#React Tic-Tac-Toe
+# react-tic-tac-toe
 
 A Tic-Tac-Toe web app!
 
