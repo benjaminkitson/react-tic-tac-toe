@@ -157,15 +157,9 @@ function Content() {
       (board[0][0] !== undefined) && (board[0][0] === board[1][1]) && (board[0][0] === board[2][2]),
       (board[0][2] !== undefined) && (board[0][2] === board[1][1]) && (board[0][2] === board[2][0]),
     ]
-    // const conditions = [];
-    // endConditions.forEach(condition => {
-    //   conditions.push(condition);
-    //   console.log(conditions);
-    // })
     const didWin = endConditions.some(condition => {
       return condition
     });
-    console.log(didWin)
     const isTie = board.flat().every(square => square);
     if (didWin) {
       setGameOver(true);
