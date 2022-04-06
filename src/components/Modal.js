@@ -1,7 +1,7 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import AppContext from '../utilities/appcontext';
 
-function Modal(props) {
+function Modal() {
 
   const { setPlayers, players } = useContext(AppContext);
 
