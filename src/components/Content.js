@@ -15,22 +15,31 @@ function Content() {
 
   const [crossesTurn, setCrossesTurn] = useState(true);
   const [gameOver, setGameOver] = useState(false);
+  const [winner, setWinner] = useState(undefined);
+
 
   useEffect(() => {
-    if (!crossesTurn && !gameOver && players === '1') markSquare();
-  }, [crossesTurn])
+    if (!board.flat().every(square => !square)) {
+      setCrossesTurn(!crossesTurn)
+    }
+    isGameEnd()
+  }, [board])
 
+  useEffect(() => {
+    if (!board.flat().every(square => !square)) {
+      const shouldRobot = (!crossesTurn && !board.flat().every(square => square) && players === '1');
+      if (shouldRobot) markSquare();
+    }
+  }, [crossesTurn])
 
   const markSquare = (row = undefined, col = undefined) => {
     if (players === '1' && !crossesTurn) {
       mrRobot(board)
     } else {
-      if (board[row][col] === undefined) {
-        const newBoard = board;
+      if (!board[row][col]) {
+        const newBoard = [...board];
         newBoard[row][col] = crossesTurn ? "X" : "O";
-        setCrossesTurn(!crossesTurn);
         setBoard(newBoard);
-        isGameEnd()
       } else {
         console.log("invalid")
       }
@@ -40,7 +49,7 @@ function Content() {
 
   const mrRobot = (board) => {
 
-    const newBoard = board
+    const newBoard = [...board]
 
     const victoryAims = {
       firstRow: [[0, 0], [0, 1], [0, 2]],
@@ -52,7 +61,6 @@ function Content() {
       firstDiag: [[0, 0], [1, 1], [2, 2]],
       secondDiag: [[0, 2], [1, 1], [2, 0]]
     };
-
 
     const finishHim = {}
 
@@ -70,7 +78,7 @@ function Content() {
       const twoXs = victoryAims[option].filter(square => newBoard[square[0]][square[1]] === 'X').length === 2;
       const freeSpace = victoryAims[option].some(square => newBoard[square[0]][square[1]] === undefined);
       if (twoXs && freeSpace) {
-        finishHim[option] = victoryAims[option];
+        defenceMode[option] = victoryAims[option];
       }
     });
 
@@ -89,7 +97,6 @@ function Content() {
         const oneO = victoryAims[option].some(square => newBoard[square[0]][square[1]] === 'O');
         const freeSpace = victoryAims[option].some(square => newBoard[square[0]][square[1]] === undefined);
         const noXs = victoryAims[option].every(square => newBoard[square[0]][square[1]] !== 'X');
-        console.log(oneO, freeSpace, noXs);
         if (oneO && freeSpace && noXs) {
           options[option] = victoryAims[option];
         }
@@ -106,9 +113,7 @@ function Content() {
           newBoard[squareChoice[0]][squareChoice[1]] = 'O'
           cpuMarked = true;
           setTimeout(() => {
-            setCrossesTurn(!crossesTurn);
             setBoard(newBoard);
-            isGameEnd()
           }, 500)
         }
       }
@@ -124,13 +129,11 @@ function Content() {
           cpuCol = Math.floor(Math.random() * 3);
         }
         if (board[cpuRow][cpuCol] === undefined) {
-          const newBoard = board;
-          cpuMarked = true;
+          const newBoard = [...board];
           newBoard[cpuRow][cpuCol] = "O";
+          cpuMarked = true;
           setTimeout(() => {
-            setCrossesTurn(!crossesTurn);
             setBoard(newBoard);
-            isGameEnd()
           }, 500)
         }
       }
@@ -153,14 +156,15 @@ function Content() {
       // Diagonals
       board[0][0] && board[0][0] === board[1][1] && board[0][0] === board[2][2],
       board[0][2] && board[0][2] === board[1][1] && board[0][2] === board[2][0],
-      board.flat().every(square => square)
     ]
-    endConditions.every((condition) => {
-      if (condition) {
-        setGameOver(true);
-      }
-      return !condition
-    });
+    const didWin = endConditions.some(condition => condition);
+    const isTie = board.flat().every(square => square);
+    if (didWin) {
+      setGameOver(true);
+      setWinner(crossesTurn ? 'X' : 'O')
+    } else if (isTie) {
+      setGameOver(true)
+    }
   }
 
   const resetGame = () => {
@@ -177,7 +181,7 @@ function Content() {
 
   const statusText = () => {
     if (gameOver) {
-      if (board.flat().every((square) => square)) {
+      if (!winner) {
         return "Tie!"
       } else {
         return crossesTurn ? "Winner: O" : "Winner: X"
