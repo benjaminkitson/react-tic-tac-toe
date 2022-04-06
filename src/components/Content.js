@@ -53,15 +53,30 @@ function Content() {
       secondDiag: [[0, 2], [1, 1], [2, 0]]
     };
 
-    const options = {}
+    const finishHim = {}
 
     Object.keys(victoryAims).forEach((option) => {
-      if (victoryAims[option].some(square => newBoard[square[0]][square[1]] === 'O') &&
-          victoryAims[option].some(square => newBoard[square[0]][square[1]] === undefined) &&
-          victoryAims[option].every(square => newBoard[square[0]][square[1]] !== 'X')) {
-        options[option] = victoryAims[option];
+      const twoOs = victoryAims[option].filter(square => newBoard[square[0]][square[1]] === 'O').length === 2;
+      const freeSpace = victoryAims[option].some(square => newBoard[square[0]][square[1]] === undefined);
+      if (twoOs && freeSpace) {
+        finishHim[option] = victoryAims[option];
       }
     });
+
+    console.log(finishHim)
+    const options = Object.keys(finishHim).length ? finishHim : {};
+
+    if (!Object.keys(options).length) {
+      Object.keys(victoryAims).forEach((option) => {
+        const oneO = victoryAims[option].some(square => newBoard[square[0]][square[1]] === 'O');
+        const freeSpace = victoryAims[option].some(square => newBoard[square[0]][square[1]] === undefined);
+        const noXs = victoryAims[option].every(square => newBoard[square[0]][square[1]] !== 'X');
+        console.log(oneO, freeSpace, noXs);
+        if (oneO && freeSpace && noXs) {
+          options[option] = victoryAims[option];
+        }
+      });
+    }
 
     if (Object.keys(options).length) {
       const optionsKeys = Object.keys(options);
