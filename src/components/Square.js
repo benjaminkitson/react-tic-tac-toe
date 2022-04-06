@@ -1,20 +1,23 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import AppContext from '../utilities/appcontext';
 
 function Square(props) {
 
-  const markSquare = () => {
-    if (!props.gameOver && !(props.players === '1' && !props.crossesTurn)) {
+  const { gameOver, players, crossesTurn, markSquare } = useContext(AppContext);
+
+  const defineSquare = () => {
+    if (!gameOver && !(players === '1' && !crossesTurn)) {
       const row = props.row;
       const col = props.col;
-      props.markSquare(row, col);
+      markSquare(row, col);
     }
   };
 
   return (
     <div
-      className={`board__square ${props.gameOver ? '' : 'board__square--in-progress'} square`}
-      onClick={markSquare}
-      gameOver={props.gameOver}
+      className={`board__square ${gameOver ? '' : 'board__square--in-progress'} square`}
+      onClick={defineSquare}
+      gameOver={gameOver}
     >{props.content}</div>
   );
 };

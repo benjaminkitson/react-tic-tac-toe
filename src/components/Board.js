@@ -1,17 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import AppContext from '../utilities/appcontext';
 import Row from './Row';
 
-function Board(props) {
+function Board() {
+
+  const { board } = useContext(AppContext);
+
   return (
     <div className="board">
-      {props.board.map((row, i) => (
+      {board.map((row, i) => (
         <Row
           row={i.toString()}
-          markSquare={props.markSquare}
-          crossesTurn={props.crossesTurn}
           squares={row}
-          gameOver={props.gameOver}
-          players={props.players}
         />))}
     </div>
   );

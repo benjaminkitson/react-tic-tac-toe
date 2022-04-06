@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import Board from './Board';
 import Status from './Status';
 import Modal from './Modal';
+import AppContext from '../utilities/appcontext';
 import mrRobot from '../utilities/robot';
 import endConditions from '../utilities/endconditions';
 
 function Content() {
 
-  const [players, setPlayers] = useState('1');
+  const [players, setPlayers] = useState(undefined);
   const [board, setBoard] = useState([
     [undefined, undefined, undefined],
     [undefined, undefined, undefined],
@@ -83,26 +84,26 @@ function Content() {
     }
   };
 
+  const data = {
+    players,
+    board,
+    crossesTurn,
+    gameOver,
+    statusText,
+    resetGame,
+    markSquare,
+    setPlayers
+  }
+
   return (
-    <div className="content">
-      <h1>Tic-Tac-Toe!</h1>
-      <Status
-        className="info"
-        statusText={statusText}
-        resetGame={resetGame}
-      />
-      <Board
-        markSquare={markSquare}
-        crossesTurn={crossesTurn}
-        board={board}
-        gameOver={gameOver}
-        players={players}
-      />
-      <Modal
-        setPlayers={setPlayers}
-        players={players}
-      />
-    </div>
+    <AppContext.Provider value={data}>
+      <div className="content">
+        <h1>Tic-Tac-Toe!</h1>
+        <Status/>
+        <Board/>
+        <Modal/>
+      </div>
+    </AppContext.Provider>
   );
 };
 
