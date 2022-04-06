@@ -53,6 +53,7 @@ function Content() {
       secondDiag: [[0, 2], [1, 1], [2, 0]]
     };
 
+
     const finishHim = {}
 
     Object.keys(victoryAims).forEach((option) => {
@@ -63,8 +64,25 @@ function Content() {
       }
     });
 
-    console.log(finishHim)
-    const options = Object.keys(finishHim).length ? finishHim : {};
+    const defenceMode = {}
+
+    Object.keys(victoryAims).forEach((option) => {
+      const twoXs = victoryAims[option].filter(square => newBoard[square[0]][square[1]] === 'X').length === 2;
+      const freeSpace = victoryAims[option].some(square => newBoard[square[0]][square[1]] === undefined);
+      if (twoXs && freeSpace) {
+        finishHim[option] = victoryAims[option];
+      }
+    });
+
+    let options
+
+    if (Object.keys(finishHim).length) {
+      options = finishHim
+    } else if (Object.keys(defenceMode).length) {
+      options = defenceMode
+    } else {
+      options = {}
+    }
 
     if (!Object.keys(options).length) {
       Object.keys(victoryAims).forEach((option) => {
