@@ -20,14 +20,72 @@ function Content() {
     if (!crossesTurn && !gameOver && players === '1') markSquare();
   }, [crossesTurn])
 
+
   const markSquare = (row = undefined, col = undefined) => {
     if (players === '1' && !crossesTurn) {
+      mrRobot(board)
+    } else {
+      if (board[row][col] === undefined) {
+        const newBoard = board;
+        newBoard[row][col] = crossesTurn ? "X" : "O";
+        setCrossesTurn(!crossesTurn);
+        setBoard(newBoard);
+        isGameEnd()
+      } else {
+        console.log("invalid")
+      }
+    }
+  };
+
+
+  const mrRobot = (board) => {
+
+    const newBoard = board
+
+    const victoryAims = {
+      firstRow: [[0, 0], [0, 1], [0, 2]],
+      secondRow: [[1, 0], [1, 1], [1, 2]],
+      thirdRow: [[2, 0], [2, 1], [2, 2]],
+      firstCol: [[0, 0], [1, 0], [2, 0]],
+      secondCol: [[0, 1], [1, 1], [2, 1]],
+      thirdCol: [[0, 2], [1, 2], [2, 2]],
+      firstDiag: [[0, 0], [1, 1], [2, 2]],
+      secondDiag: [[0, 2], [1, 1], [2, 0]]
+    };
+
+    const options = {}
+
+    Object.keys(victoryAims).forEach((option) => {
+      if (victoryAims[option].some(square => newBoard[square[0]][square[1]] === 'O') &&
+          victoryAims[option].some(square => newBoard[square[0]][square[1]] === undefined) &&
+          victoryAims[option].every(square => newBoard[square[0]][square[1]] !== 'X')) {
+        options[option] = victoryAims[option];
+      }
+    });
+
+    if (Object.keys(options).length) {
+      const optionsKeys = Object.keys(options);
+      const choice = optionsKeys[Math.floor(Math.random()*optionsKeys.length)];
+      let cpuMarked = false
+      while (cpuMarked === false) {
+        const squareChoice = options[choice][Math.floor(Math.random()*3)];
+        if ((newBoard[squareChoice[0]][squareChoice[1]]) === undefined) {
+          newBoard[squareChoice[0]][squareChoice[1]] = 'O'
+          cpuMarked = true;
+          setTimeout(() => {
+            setCrossesTurn(!crossesTurn);
+            setBoard(newBoard);
+            isGameEnd()
+          }, 500)
+        }
+      }
+    } else {
       let cpuMarked = false
       while (cpuMarked === false) {
         let cpuRow;
         let cpuCol;
         if (!board[1][1]) {
-          [cpuRow, cpuCol] = [1,1];
+          [cpuRow, cpuCol] = [1, 1];
         } else {
           cpuRow = Math.floor(Math.random() * 3);
           cpuCol = Math.floor(Math.random() * 3);
@@ -43,18 +101,11 @@ function Content() {
           }, 500)
         }
       }
-    } else {
-      if (board[row][col] === undefined) {
-        const newBoard = board;
-        newBoard[row][col] = crossesTurn ? "X" : "O";
-        setCrossesTurn(!crossesTurn);
-        setBoard(newBoard);
-        isGameEnd()
-      } else {
-        console.log("invalid")
-      }
     }
-  };
+
+    // le Robot
+
+  }
 
   const isGameEnd = () => {
     const endConditions = [
