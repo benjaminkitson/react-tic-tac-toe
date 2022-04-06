@@ -6,7 +6,7 @@ import Modal from './Modal';
 
 function Content() {
 
-  const [players, setPlayers] = useState(undefined);
+  const [players, setPlayers] = useState('1');
   const [board, setBoard] = useState([
     [undefined, undefined, undefined],
     [undefined, undefined, undefined],
@@ -20,14 +20,14 @@ function Content() {
 
   useEffect(() => {
     if (!board.flat().every(square => !square)) {
+      isGameEnd()
       setCrossesTurn(!crossesTurn)
     }
-    isGameEnd()
   }, [board])
 
   useEffect(() => {
     if (!board.flat().every(square => !square)) {
-      const shouldRobot = (!crossesTurn && !board.flat().every(square => square) && players === '1');
+      const shouldRobot = (!crossesTurn && !board.flat().every(square => square) && players === '1' && !gameOver);
       if (shouldRobot) markSquare();
     }
   }, [crossesTurn])
@@ -146,18 +146,26 @@ function Content() {
   const isGameEnd = () => {
     const endConditions = [
       // Rows equal
-      board[0][0] && board[0][0] === board[0][1] && board[0][0] === board[0][2],
-      board[1][0] && board[1][0] === board[1][1] && board[1][0] === board[1][2],
-      board[2][0] && board[2][0] === board[2][1] && board[2][0] === board[2][2],
+      (board[0][0] !== undefined) && (board[0][0] === board[0][1]) && (board[0][0] === board[0][2]),
+      (board[1][0] !== undefined) && (board[1][0] === board[1][1]) && (board[1][0] === board[1][2]),
+      (board[2][0] !== undefined) && (board[2][0] === board[2][1]) && (board[2][0] === board[2][2]),
       // Columns equal
-      board[0][0] && board[0][0] === board[1][0] && board[0][0] === board[2][0],
-      board[0][1] && board[0][1] === board[1][1] && board[0][1] === board[2][1],
-      board[0][2] && board[0][2] === board[1][2] && board[0][2] === board[2][2],
+      (board[0][0] !== undefined) && (board[0][0] === board[1][0]) && (board[0][0] === board[2][0]),
+      (board[0][1] !== undefined) && (board[0][1] === board[1][1]) && (board[0][1] === board[2][1]),
+      (board[0][2] !== undefined) && (board[0][2] === board[1][2]) && (board[0][2] === board[2][2]),
       // Diagonals
-      board[0][0] && board[0][0] === board[1][1] && board[0][0] === board[2][2],
-      board[0][2] && board[0][2] === board[1][1] && board[0][2] === board[2][0],
+      (board[0][0] !== undefined) && (board[0][0] === board[1][1]) && (board[0][0] === board[2][2]),
+      (board[0][2] !== undefined) && (board[0][2] === board[1][1]) && (board[0][2] === board[2][0]),
     ]
-    const didWin = endConditions.some(condition => condition);
+    // const conditions = [];
+    // endConditions.forEach(condition => {
+    //   conditions.push(condition);
+    //   console.log(conditions);
+    // })
+    const didWin = endConditions.some(condition => {
+      return condition
+    });
+    console.log(didWin)
     const isTie = board.flat().every(square => square);
     if (didWin) {
       setGameOver(true);
@@ -177,6 +185,7 @@ function Content() {
         ]
       );
       setCrossesTurn(true);
+      setWinner(undefined);
   };
 
   const statusText = () => {
