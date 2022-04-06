@@ -6,32 +6,14 @@ function Modal(props) {
   const [formSelection, setFormSelection] = useState(undefined);
   const { setPlayers, players } = useContext(AppContext);
 
-  const handleChange = (e) => {
-    setFormSelection(e.target.value);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setPlayers(formSelection);
-  };
-
   return (
     <div className={`modal ${players ? '' : 'modal--visible'}`}>
       <div className="modal__content">
         <h1>Select number of players:</h1>
-        <form onSubmit={handleSubmit} className="modal__players-form">
-          <div>
-            <input type="radio" id="1" name="playerNumbers" value="1" onChange={handleChange}/>
-            <label for="1">One player</label>
-          </div>
-          <br />
-          <div>
-            <input type="radio" id="2" name="playerNumbers" value="2" onChange={handleChange}/>
-            <label for="2">Two players</label>
-          </div>
-          <br />
-          <button>Play!</button>
-        </form>
+        <div className="modal__players-form">
+          <button onClick={() => setPlayers('1')} className="modal__button">1 player</button>
+          <button onClick={() => setPlayers('2')} className="modal__button">2 players</button>
+        </div>
       </div>
     </div>
   );
