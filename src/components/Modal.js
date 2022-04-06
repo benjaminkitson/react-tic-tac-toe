@@ -3,7 +3,6 @@ import AppContext from '../utilities/appcontext';
 
 function Modal(props) {
 
-  const [formSelection, setFormSelection] = useState(undefined);
   const { setPlayers, players } = useContext(AppContext);
 
   return (
