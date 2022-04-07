@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Board from './Board';
-import Status from './Status';
 import Modal from './Modal';
 import Header from './Header';
 import AppContext from '../utilities/appcontext';
