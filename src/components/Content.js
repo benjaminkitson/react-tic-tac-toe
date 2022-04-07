@@ -20,17 +20,17 @@ function Content() {
 
   useEffect(() => {
     if (!board.flat().every(square => !square)) {
-      isGameEnd()
-      setCrossesTurn(!crossesTurn)
+      isGameEnd();
+      setCrossesTurn(!crossesTurn);
     }
-  }, [board])
+  }, [board]);
 
   useEffect(() => {
     if (!board.flat().every(square => !square)) {
       const shouldRobot = (!crossesTurn && !board.flat().every(square => square) && players === '1' && !gameOver);
       if (shouldRobot) markSquare();
     }
-  }, [crossesTurn])
+  }, [crossesTurn]);
 
   const markSquare = (row = undefined, col = undefined) => {
     if (players === '1' && !crossesTurn) {
@@ -41,7 +41,7 @@ function Content() {
         newBoard[row][col] = crossesTurn ? "X" : "O";
         setBoard(newBoard);
       } else {
-        console.log("invalid")
+        console.log("invalid");
       }
     }
   };
@@ -75,12 +75,12 @@ function Content() {
   const statusText = () => {
     if (gameOver) {
       if (!winner) {
-        return "Tie!"
+        return "Tie!";
       } else {
-        return crossesTurn ? "Winner: O" : "Winner: X"
+        return crossesTurn ? "Winner: O" : "Winner: X";
       }
     } else {
-      return crossesTurn ? "Next Player: X" : "Next Player: O"
+      return crossesTurn ? "Next Player: X" : "Next Player: O";
     }
   };
 
@@ -93,7 +93,7 @@ function Content() {
     resetGame,
     markSquare,
     setPlayers
-  }
+  };
 
   return (
     <AppContext.Provider value={data}>

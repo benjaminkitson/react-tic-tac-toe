@@ -36,11 +36,11 @@ const mrRobot = (board, setBoard) => {
   let options;
 
   if (Object.keys(finishHim).length) {
-    options = finishHim
+    options = finishHim;
   } else if (Object.keys(defenceMode).length) {
-    options = defenceMode
+    options = defenceMode;
   } else {
-    options = {}
+    options = {};
   }
 
   if (!Object.keys(options).length) {
@@ -57,11 +57,11 @@ const mrRobot = (board, setBoard) => {
   if (Object.keys(options).length) {
     const optionsKeys = Object.keys(options);
     const choice = optionsKeys[Math.floor(Math.random() * optionsKeys.length)];
-    let cpuMarked = false
+    let cpuMarked = false;
     while (cpuMarked === false) {
       const squareChoice = options[choice][Math.floor(Math.random() * 3)];
       if ((newBoard[squareChoice[0]][squareChoice[1]]) === undefined) {
-        newBoard[squareChoice[0]][squareChoice[1]] = 'O'
+        newBoard[squareChoice[0]][squareChoice[1]] = 'O';
         cpuMarked = true;
         setTimeout(() => {
           setBoard(newBoard);
@@ -69,7 +69,7 @@ const mrRobot = (board, setBoard) => {
       }
     }
   } else {
-    let cpuMarked = false
+    let cpuMarked = false;
     while (cpuMarked === false) {
       let cpuRow;
       let cpuCol;
