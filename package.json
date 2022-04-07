@@ -6,6 +6,7 @@
   "author": "Benjamin Kitson <benjaminkitson13@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "start": "node server/server.js",
     "server": "live-server public/",
     "build-prod": "webpack --env production --mode=production",
     "build-dev": "webpack --env development --mode=development",
