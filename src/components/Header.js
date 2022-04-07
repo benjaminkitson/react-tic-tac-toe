@@ -8,8 +8,8 @@ function Header() {
   return (
     <div className='header'>
       <h1 className='header__title'>Tic-Tac-Toe!</h1>
-      <div className='info'>
-        <h1 className="status">{statusText()}</h1>
+      <div className='header__info'>
+        <h1 className="header__status">{statusText()}</h1>
         <button className="reset" onClick={resetGame}>Reset</button>
       </div>
     </div>
