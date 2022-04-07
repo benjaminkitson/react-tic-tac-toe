@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Board from './Board';
 import Status from './Status';
 import Modal from './Modal';
+import Header from './Header';
 import AppContext from '../utilities/appcontext';
 import mrRobot from '../utilities/robot';
 import endConditions from '../utilities/endconditions';
@@ -98,8 +99,7 @@ function Content() {
   return (
     <AppContext.Provider value={data}>
       <div className="content">
-        <h1>Tic-Tac-Toe!</h1>
-        <Status/>
+        <Header/>
         <Board/>
         <Modal/>
       </div>
