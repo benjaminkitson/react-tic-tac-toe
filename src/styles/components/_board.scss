@@ -1,8 +1,36 @@
 .board {
-  width: 35vw;
-  height: 35vw;
+  width: 70vh;
+  height: 70vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  margin-top: 80px;
+}
+
+
+@media (orientation: portrait) {
+  .board {
+    width: 70vw;
+    height: 70vw;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .board {
+    margin-top: 0;
+  }
+}
+
+@media (min-width: 600px) {
+  .board {
+    margin-top: 40px;
+  }
+}
+
+@media (max-width: 599px) {
+  .board {
+    width: 90vw;
+    height: 90vw;
+  }
 }
