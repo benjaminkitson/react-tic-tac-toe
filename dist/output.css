@@ -550,6 +550,14 @@ video {
   z-index: 0;
 }
 
+.mb-5 {
+  margin-bottom: 1.25rem;
+}
+
+.mt-10 {
+  margin-top: 2.5rem;
+}
+
 .flex {
   display: flex;
 }
@@ -606,6 +614,14 @@ video {
   height: 12rem;
 }
 
+.h-24 {
+  height: 6rem;
+}
+
+.h-16 {
+  height: 4rem;
+}
+
 .w-full {
   width: 100%;
 }
@@ -647,6 +663,10 @@ video {
   width: 66.666667%;
 }
 
+.w-36 {
+  width: 9rem;
+}
+
 .grow {
   flex-grow: 1;
 }
@@ -669,6 +689,10 @@ video {
 
 .flex-col {
   flex-direction: column;
+}
+
+.items-start {
+  align-items: flex-start;
 }
 
 .items-center {

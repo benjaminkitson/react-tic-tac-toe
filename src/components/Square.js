@@ -20,7 +20,7 @@ function Square({ content, row, col }) {
       gameOver={gameOver}
     >
       {
-        // This is dumb and needs to change
+        // TODO: This is dumb and needs to change
       }
       {content === "X" ? <RxCross1 /> : content === "O" ? <RxCircle /> : null}
     </div>

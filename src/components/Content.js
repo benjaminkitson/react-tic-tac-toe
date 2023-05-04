@@ -91,7 +91,6 @@ function Content() {
     crossesTurn,
     gameOver,
     statusText,
-    resetGame,
     markSquare,
     setPlayers,
   };
@@ -102,6 +101,12 @@ function Content() {
         <Header />
         <div className="w-full grow flex flex-col justify-start items-center">
           <Board />
+          <button
+            className="reset mt-10 w-36 h-16 bg-blue-500 rounded-xl text-3xl"
+            onClick={resetGame}
+          >
+            Reset
+          </button>
           <Modal />
         </div>
       </div>
