@@ -98,7 +98,7 @@ function Content() {
 
   return (
     <AppContext.Provider value={data}>
-      <div className="w-full h-full flex justify-center items-center bg-blue-500">
+      <div className="w-full h-full flex flex-col justify-center items-center bg-blue-500">
         <Header />
         <Board />
         <Modal />

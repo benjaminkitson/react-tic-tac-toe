@@ -20,6 +20,10 @@ module.exports = function (env) {
           test: /\.js$/,
           exclude: /node_modules/,
         },
+        {
+          use: ["style-loader", "css-loader", "sass-loader"],
+          test: /output\.s?css$/,
+        },
       ],
     },
     devtool: isProduction ? "source-map" : "eval-cheap-module-source-map",

@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Content from "./components/Content";
-import "./styles/styles.css";
+import "../dist/output.css";
 
 const app = document.getElementById("app");
 
