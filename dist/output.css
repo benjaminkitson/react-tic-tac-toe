@@ -643,6 +643,10 @@ video {
   width: fit-content;
 }
 
+.w-2\/3 {
+  width: 66.666667%;
+}
+
 .grow {
   flex-grow: 1;
 }
@@ -689,6 +693,10 @@ video {
 
 .rounded-xl {
   border-radius: 0.75rem;
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
 }
 
 .border {
@@ -740,6 +748,11 @@ video {
   background-color: rgb(219 234 254 / var(--tw-bg-opacity));
 }
 
+.bg-gray-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(229 231 235 / var(--tw-bg-opacity));
+}
+
 .text-5xl {
   font-size: 3rem;
   line-height: 1;
@@ -748,6 +761,16 @@ video {
 .text-9xl {
   font-size: 8rem;
   line-height: 1;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
 }
 
 .filter {
