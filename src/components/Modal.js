@@ -4,6 +4,7 @@ import AppContext from "../utilities/appcontext";
 function Modal() {
   const { setPlayers, players } = useContext(AppContext);
 
+  return null;
   return (
     <div
       className={`${

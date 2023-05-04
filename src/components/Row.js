@@ -1,9 +1,9 @@
-import React from 'react';
-import Square from './Square';
+import React from "react";
+import Square from "./Square";
 
 function Row(props) {
   return (
-    <div className="board__row" id={props.id}>
+    <div className="inline-grid grid-cols-3 gap-4 w-fit" id={props.id}>
       {props.squares.map((square, i) => (
         <Square
           col={i.toString()}
@@ -13,9 +13,10 @@ function Row(props) {
           row={props.row}
           gameOver={props.gameOver}
           players={props.players}
-        />))}
+        />
+      ))}
     </div>
   );
-};
+}
 
-export default Row
+export default Row;
