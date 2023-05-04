@@ -14,8 +14,8 @@ function Square({ content, row, col }) {
   return (
     <div
       className={`flex justify-center items-center text-9xl ${
-        gameOver ? "" : "board__square--in-progress"
-      } square w-48 h-48 bg-blue-100 border border-gray-600 rounded-xl`}
+        gameOver ? "" : "hover:bg-blue-300 hover:cursor-pointer"
+      } square w-48 h-48 bg-blue-100 border border-gray-600 rounded-xl transition-colors duration-300`}
       onClick={defineSquare}
       gameOver={gameOver}
     >

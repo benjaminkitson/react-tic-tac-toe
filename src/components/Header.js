@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import AppContext from "../utilities/appcontext";
 
 function Header() {
-  const { statusText, resetGame } = useContext(AppContext);
+  const { statusText } = useContext(AppContext);
 
   return (
     <div className="relative w-full flex flex-col items-center justify-center h-48">
@@ -11,7 +11,7 @@ function Header() {
         {
           // TODO: change this statusText thing
         }
-        <h1 className="header__status">{statusText()}</h1>
+        <h1 className="text-3xl">{statusText()}</h1>
       </div>
     </div>
   );

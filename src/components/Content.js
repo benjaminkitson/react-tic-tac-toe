@@ -7,6 +7,7 @@ import mrRobot from "../utilities/robot";
 import endConditions from "../utilities/endconditions";
 
 function Content() {
+  // TODO: All of this stuff can be bundled into custom hooks etc
   const [players, setPlayers] = useState(undefined);
   const [board, setBoard] = useState([
     [undefined, undefined, undefined],
@@ -81,7 +82,7 @@ function Content() {
         return crossesTurn ? "Winner: O" : "Winner: X";
       }
     } else {
-      return crossesTurn ? "Next Player: X" : "Next Player: O";
+      return crossesTurn ? "Current Turn: X" : "Current Turn: O";
     }
   };
 
