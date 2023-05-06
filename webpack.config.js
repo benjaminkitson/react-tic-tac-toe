@@ -8,7 +8,7 @@ module.exports = function (env) {
   const isProduction = env.production === true;
 
   return {
-    entry: "./src/app.js",
+    entry: "./js/src/app.js",
     output: {
       path: buildPath("public"),
       filename: "bundle.js",

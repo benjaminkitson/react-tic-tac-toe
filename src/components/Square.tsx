@@ -1,12 +1,19 @@
 import React, { useContext } from "react";
-import AppContext from "../utilities/appcontext";
 import { RxCross1, RxCircle } from "react-icons/rx";
+import { useAppContext } from "../utilities/useGame";
+import { SquareContent } from "./Content";
 
-function Square({ content, row, col }) {
-  const { gameOver, players, crossesTurn, markSquare } = useContext(AppContext);
+type SquareProps = {
+  content: SquareContent;
+  row: number;
+  col: number;
+};
+
+function Square({ content, row, col }: SquareProps) {
+  const { gameOver, gameMode, crossesTurn, markSquare } = useAppContext();
 
   const defineSquare = () => {
-    if (!gameOver && !(players === "1" && !crossesTurn)) {
+    if (!gameOver && !(gameMode === "SINGLE_PLAYER" && !crossesTurn)) {
       markSquare(row, col);
     }
   };
@@ -17,7 +24,7 @@ function Square({ content, row, col }) {
         gameOver ? "" : "hover:bg-blue-300 hover:cursor-pointer"
       } square w-48 h-48 bg-blue-100 border border-gray-600 rounded-xl transition-colors duration-300`}
       onClick={defineSquare}
-      gameOver={gameOver}
+      // gameOver={gameOver}
     >
       {
         // TODO: This is dumb and needs to change

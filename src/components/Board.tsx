@@ -1,14 +1,14 @@
 import React, { useContext } from "react";
-import AppContext from "../utilities/appcontext";
 import Row from "./Row";
+import { useAppContext } from "../utilities/useGame";
 
 function Board() {
-  const { board } = useContext(AppContext);
+  const { board } = useAppContext();
 
   return (
     <div className="w-auto grid grid-rows-3 gap-4">
       {board.map((row, i) => (
-        <Row row={i.toString()} squares={row} />
+        <Row row={i} squares={row} />
       ))}
     </div>
   );
