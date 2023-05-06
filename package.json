@@ -10,7 +10,7 @@
     "server": "live-server public/",
     "build-prod": "webpack --env production --mode=production",
     "build-dev": "webpack --env development --mode=development",
-    "dev-server": "webpack-dev-server & npx tailwindcss -i ./src/styles/input.css -o ./dist/output.css --watch"
+    "dev-server": "webpack-dev-server & npx tailwindcss -i ./styles/input.css -o ./styles/output.css --watch"
   },
   "dependencies": {
     "express": "^4.17.3",
