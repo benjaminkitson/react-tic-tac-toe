@@ -1,16 +1,18 @@
-import React, { ReactNode } from "react";
-import { useAppContext } from "../utilities/useGame";
+import React, { ReactNode, useContext } from "react";
+import { AppContext } from "../utilities/useGame";
 import { GameMode } from "./Content";
 
 const SelectPlayersButton = ({ gameMode }: { gameMode: GameMode }) => {
-  const { setGameMode } = useAppContext();
+  const { setGameMode } = useContext(AppContext);
   // TODO: won't work for online multiplayer
   const text =
     gameMode === "SINGLE_PLAYER" ? "Single Player" : "Local Multi Player";
 
   return (
     <button
-      onClick={() => setGameMode(gameMode)}
+      onClick={() => {
+        setGameMode(gameMode);
+      }}
       className="h-20 w-28 bg-gray-200 rounded-lg"
     >
       {text}
@@ -19,7 +21,7 @@ const SelectPlayersButton = ({ gameMode }: { gameMode: GameMode }) => {
 };
 
 function Modal() {
-  const { gameMode } = useAppContext();
+  const { gameMode } = useContext(AppContext);
   // return null;
   return (
     <div

@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import { useAppContext } from "../utilities/useGame";
+import { AppContext } from "../utilities/useGame";
 
 function Header() {
-  const { statusText } = useAppContext();
+  const { statusText } = useContext(AppContext);
 
   return (
     <div className="relative w-full flex flex-col items-center justify-center h-48">

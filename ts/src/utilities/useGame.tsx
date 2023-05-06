@@ -6,6 +6,24 @@ import { SquareContent } from "../components/Content";
 import mrRobot from "./robot";
 import endConditions from "./endconditions";
 
+type ContextData = {
+  gameMode: GameMode | undefined;
+  board: BoardType;
+  crossesTurn: boolean;
+  gameOver: boolean;
+  setBoard: React.Dispatch<React.SetStateAction<BoardType>>;
+  resetGame: () => void;
+  statusText: () =>
+    | "Tie!"
+    | "Current Turn: O"
+    | "Winner: O"
+    | "Winner: X"
+    | "Current Turn: X";
+  setGameMode: React.Dispatch<React.SetStateAction<GameMode | undefined>>;
+};
+
+export const AppContext = React.createContext<ContextData>({} as ContextData);
+
 export const useAppContext = () => {
   const [gameMode, setGameMode] = useState<GameMode | undefined>(undefined);
 
@@ -18,7 +36,6 @@ export const useAppContext = () => {
   const [crossesTurn, setCrossesTurn] = useState(true);
   const [gameOver, setGameOver] = useState(false);
   const [winner, setWinner] = useState<Player | undefined>(undefined);
-
   useEffect(() => {
     if (!board.flat().every((square: SquareContent) => !square)) {
       isGameEnd();
@@ -33,24 +50,9 @@ export const useAppContext = () => {
         !board.flat().every((square: SquareContent) => square) &&
         gameMode === "SINGLE_PLAYER" &&
         !gameOver;
-      if (shouldRobot) markSquare();
+      if (shouldRobot) mrRobot(board, setBoard);
     }
   }, [crossesTurn]);
-
-  const markSquare = (row?: number, col?: number) => {
-    if (gameMode === "SINGLE_PLAYER" && !crossesTurn) {
-      mrRobot(board, setBoard);
-    } else {
-      // TODO: row and col shouldn't need to be "asserted" here, fix
-      if (row && col && !board[row][col]) {
-        const newBoard: BoardType = [...board];
-        newBoard[row][col] = crossesTurn ? "X" : "O";
-        setBoard(newBoard);
-      } else {
-        console.log("invalid");
-      }
-    }
-  };
 
   const isGameEnd = () => {
     const didWin = endConditions(board).some((condition) => {
@@ -66,6 +68,7 @@ export const useAppContext = () => {
   };
 
   const resetGame = () => {
+    console.log("hello");
     setGameOver(false);
     setBoard([
       [undefined, undefined, undefined],
@@ -93,17 +96,11 @@ export const useAppContext = () => {
     board,
     crossesTurn,
     gameOver,
+    setBoard,
     resetGame,
     statusText,
-    markSquare,
     setGameMode,
   };
-
-  type ContextData = typeof data;
-
-  const AppContext = React.createContext<ContextData | undefined>(undefined);
-
-  const AppData: typeof data = useAppContext();
 
   type AppContextProviderProps = {
     children: React.ReactNode;
@@ -113,5 +110,5 @@ export const useAppContext = () => {
     <AppContext.Provider value={data}>{children}</AppContext.Provider>
   );
 
-  return { AppContextProvider, ...AppData };
+  return { AppContextProvider };
 };
