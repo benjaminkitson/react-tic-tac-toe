@@ -1,6 +1,7 @@
 import React, { ReactNode, useContext } from "react";
 import { AppContext } from "../utilities/useGame";
 import { GameMode } from "./Content";
+import { Button } from "./Button";
 
 const SelectPlayersButton = ({ gameMode }: { gameMode: GameMode }) => {
   const { setGameMode } = useContext(AppContext);
@@ -9,14 +10,14 @@ const SelectPlayersButton = ({ gameMode }: { gameMode: GameMode }) => {
     gameMode === "SINGLE_PLAYER" ? "Single Player" : "Local Multi Player";
 
   return (
-    <button
+    <Button
       onClick={() => {
         setGameMode(gameMode);
       }}
       className="h-20 w-28 bg-gray-200 rounded-lg"
     >
       {text}
-    </button>
+    </Button>
   );
 };
 
