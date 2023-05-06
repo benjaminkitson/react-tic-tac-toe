@@ -6,7 +6,7 @@ import { SquareContent } from "../components/Content";
 import mrRobot from "./robot";
 import endConditions from "./endconditions";
 
-type ContextData = {
+type AppContextType = {
   gameMode: GameMode | undefined;
   board: BoardType;
   crossesTurn: boolean;
@@ -15,14 +15,16 @@ type ContextData = {
   resetGame: () => void;
   statusText: () =>
     | "Tie!"
-    | "Current Turn: O"
     | "Winner: O"
     | "Winner: X"
-    | "Current Turn: X";
+    | "Current Turn: X"
+    | "Current Turn: O";
   setGameMode: React.Dispatch<React.SetStateAction<GameMode | undefined>>;
 };
 
-export const AppContext = React.createContext<ContextData>({} as ContextData);
+export const AppContext = React.createContext<AppContextType>(
+  {} as AppContextType
+);
 
 export const useAppContext = () => {
   const [gameMode, setGameMode] = useState<GameMode | undefined>(undefined);
@@ -68,7 +70,6 @@ export const useAppContext = () => {
   };
 
   const resetGame = () => {
-    console.log("hello");
     setGameOver(false);
     setBoard([
       [undefined, undefined, undefined],
