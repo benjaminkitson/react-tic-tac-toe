@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import Row from "./Row";
 import { AppContext } from "../utilities/useGame";
+import { Button } from "./Button";
 
 function Board() {
   const { board, resetGame } = useContext(AppContext);
@@ -12,12 +13,9 @@ function Board() {
           <Row row={i} squares={row} />
         ))}
       </div>
-      <button
-        className="reset mt-10 w-36 h-16 bg-blue-500 rounded-xl text-3xl"
-        onClick={() => resetGame()}
-      >
+      <Button buttonColor="blue" buttonSize="lg" onClick={() => resetGame()}>
         Reset
-      </button>
+      </Button>
     </>
   );
 }

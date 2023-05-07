@@ -31,8 +31,8 @@ function Square({ content, row, col }: SquareProps) {
   return (
     <div
       className={`flex justify-center items-center text-9xl ${
-        gameOver ? "" : "hover:bg-blue-300 hover:cursor-pointer"
-      } square w-48 h-48 bg-blue-100 border border-gray-600 rounded-xl transition-colors duration-300`}
+        gameOver || content ? "" : "hover:bg-blue-300 hover:cursor-pointer"
+      } square w-48 h-48  border border-gray-400 rounded-xl bg-blue-100`}
       onClick={() => markSquare(row, col)}
       // gameOver={gameOver}
     >

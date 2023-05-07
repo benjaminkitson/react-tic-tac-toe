@@ -8,7 +8,7 @@ module.exports = function (env) {
   const isProduction = env.production === true;
 
   return {
-    entry: "./js/src/app.js",
+    entry: "./ts/src/app.tsx",
     output: {
       path: buildPath("public"),
       filename: "bundle.js",
@@ -16,8 +16,8 @@ module.exports = function (env) {
     module: {
       rules: [
         {
-          loader: "babel-loader",
-          test: /\.js$/,
+          test: /\.tsx?$/,
+          use: "ts-loader",
           exclude: /node_modules/,
         },
         {
@@ -25,6 +25,9 @@ module.exports = function (env) {
           test: /output\.s?css$/,
         },
       ],
+    },
+    resolve: {
+      extensions: [".tsx", ".ts", ".js"],
     },
     devtool: isProduction ? "source-map" : "eval-cheap-module-source-map",
     devServer: {
