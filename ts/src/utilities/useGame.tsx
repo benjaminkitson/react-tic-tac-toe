@@ -26,7 +26,11 @@ export const AppContext = React.createContext<AppContextType>(
   {} as AppContextType
 );
 
-export const useAppContext = () => {
+type AppContextProviderProps = {
+  children: React.ReactNode;
+};
+
+export const AppContextProvider = ({ children }: AppContextProviderProps) => {
   const [gameMode, setGameMode] = useState<GameMode | undefined>(undefined);
 
   const [board, setBoard] = useState<BoardType>([
@@ -103,13 +107,5 @@ export const useAppContext = () => {
     setGameMode,
   };
 
-  type AppContextProviderProps = {
-    children: React.ReactNode;
-  };
-
-  const AppContextProvider = ({ children }: AppContextProviderProps) => (
-    <AppContext.Provider value={data}>{children}</AppContext.Provider>
-  );
-
-  return { AppContextProvider };
+  return <AppContext.Provider value={data}>{children}</AppContext.Provider>;
 };

@@ -5,8 +5,8 @@ type ButtonProps = {
   children?: string;
   onClick?: () => any;
   className?: string;
-  buttonColor?: ButtonColor;
-  buttonSize?: ButtonSize;
+  buttonColor: ButtonColor;
+  buttonSize: ButtonSize;
 };
 
 export const Button = ({
