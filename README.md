@@ -1,6 +1,6 @@
 # react-tic-tac-toe
 
-A Tic-Tac-Toe web app built with React!
+A Tic-Tac-Toe web app built with React using TypeScript!
 
 The app supports both one and two players, with a cpu opponent in one-player mode.
 
