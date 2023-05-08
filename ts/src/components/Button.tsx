@@ -32,11 +32,10 @@ export const Button = ({
     buttonSize ? buttonSizeMap[buttonSize] : "",
   ];
 
+  const classes = `rounded-lg m-5 ${color} ${size} ${className || ""}`.trim();
+
   return (
-    <button
-      onClick={onClick}
-      className={`rounded-lg m-5 ${color} ${size} ${className}`}
-    >
+    <button onClick={onClick} className={classes}>
       {children}
     </button>
   );
