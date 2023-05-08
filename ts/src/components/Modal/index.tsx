@@ -1,7 +1,7 @@
 import React, { ReactNode, useContext } from "react";
-import { AppContext } from "../utilities/useGame";
-import { GameMode } from "./Content";
-import { Button } from "./Button";
+import { AppContext } from "../AppContext";
+import { GameMode } from "../Content";
+import { Button } from "../Button";
 
 const SelectPlayersButton = ({ gameMode }: { gameMode: GameMode }) => {
   const { setGameMode } = useContext(AppContext);

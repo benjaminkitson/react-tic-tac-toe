@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
-import Row from "./Row";
-import { AppContext } from "../utilities/useGame";
-import { Button } from "./Button";
+import Row from "../Row";
+import { AppContext } from "../AppContext";
+import { Button } from "../Button";
 
 function Board() {
   const { board, resetGame } = useContext(AppContext);

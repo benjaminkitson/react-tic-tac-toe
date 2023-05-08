@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { RxCross1, RxCircle } from "react-icons/rx";
-import { AppContext } from "../utilities/useGame";
-import { BoardType, SquareContent } from "./Content";
+import { AppContext } from "../AppContext";
+import { BoardType, SquareContent } from "../Content";
 
 type SquareProps = {
   content: SquareContent;

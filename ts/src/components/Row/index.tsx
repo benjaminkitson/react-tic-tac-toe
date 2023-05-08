@@ -1,6 +1,6 @@
 import React from "react";
-import Square from "./Square";
-import { RowType } from "./Content";
+import Square from "../Square";
+import { RowType } from "../Content";
 
 type RowProps = {
   row: number;

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { AppContext } from "../utilities/useGame";
+import { AppContext } from "../AppContext";
 
 function Header() {
   const { statusText } = useContext(AppContext);

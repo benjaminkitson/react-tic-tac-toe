@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
-import Board from "./Board";
-import Modal from "./Modal";
-import Header from "./Header";
-import { AppContext, useAppContext } from "../utilities/useGame";
+import Board from "../Board";
+import Modal from "../Modal";
+import Header from "../Header";
+import { AppContextProvider } from "../AppContext";
 
 export type GameMode = "SINGLE_PLAYER" | "LOCAL_MULTI_PLAYER";
 
@@ -16,7 +16,6 @@ export type RowType = [SquareContent, SquareContent, SquareContent];
 export type BoardType = [RowType, RowType, RowType];
 
 export const Content = () => {
-  const { AppContextProvider } = useAppContext();
   return (
     <AppContextProvider>
       <div className="relative w-full h-full flex flex-col justify-center items-center">

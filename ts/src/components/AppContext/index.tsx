@@ -1,10 +1,10 @@
 // TODO: All of this stuff can be bundled into custom hooks etc
 import React, { useContext } from "react";
 import { useEffect, useState } from "react";
-import { BoardType, GameMode, Player } from "../components/Content";
-import { SquareContent } from "../components/Content";
-import mrRobot from "./robot";
-import endConditions from "./endconditions";
+import { BoardType, GameMode, Player } from "../Content";
+import { SquareContent } from "../Content";
+import mrRobot from "../../utilities/robot";
+import endConditions from "../../utilities/endconditions";
 
 type AppContextType = {
   gameMode: GameMode | undefined;
