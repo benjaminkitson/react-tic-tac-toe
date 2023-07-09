@@ -6,7 +6,7 @@ import { SquareContent } from "../Content";
 import mrRobot from "../../utilities/robot";
 import endConditions from "../../utilities/endconditions";
 
-type AppContextType = {
+export type AppContextType = {
   gameMode: GameMode | undefined;
   board: BoardType;
   crossesTurn: boolean;
@@ -31,76 +31,82 @@ type AppContextProviderProps = {
 };
 
 export const AppContextProvider = ({ children }: AppContextProviderProps) => {
-  const [gameMode, setGameMode] = useState<GameMode | undefined>(undefined);
 
+  // Gross useState stuff that should be in a reducer
+  const [gameMode, setGameMode] = useState<GameMode | undefined>(undefined);
   const [board, setBoard] = useState<BoardType>([
     [undefined, undefined, undefined],
     [undefined, undefined, undefined],
     [undefined, undefined, undefined],
   ]);
+  const [isCrossesTurn, setIsCrossesTurn] = useState(true);
+  const [isGameOver, setIsGameOver] = useState(false);
+  const [winningPlayer, setWinningPlayer] = useState<Player | undefined>(undefined);
 
-  const [crossesTurn, setCrossesTurn] = useState(true);
-  const [gameOver, setGameOver] = useState(false);
-  const [winner, setWinner] = useState<Player | undefined>(undefined);
-  useEffect(() => {
-    if (!board.flat().every((square: SquareContent) => !square)) {
-      isGameEnd();
-      setCrossesTurn(!crossesTurn);
-    }
-  }, [board]);
-
-  useEffect(() => {
-    if (!board.flat().every((square: SquareContent) => !square)) {
-      const shouldRobot =
-        !crossesTurn &&
-        !board.flat().every((square: SquareContent) => square) &&
-        gameMode === "SINGLE_PLAYER" &&
-        !gameOver;
-      if (shouldRobot) mrRobot(board, setBoard);
-    }
-  }, [crossesTurn]);
-
+  // Logic evaluating the end state of the game
   const isGameEnd = () => {
     const didWin = endConditions(board).some((condition) => {
       return condition;
     });
     const isTie = board.flat().every((square: SquareContent) => square);
     if (didWin) {
-      setGameOver(true);
-      setWinner(crossesTurn ? "X" : "O");
+      setIsGameOver(true);
+      setWinningPlayer(isCrossesTurn ? "X" : "O");
     } else if (isTie) {
-      setGameOver(true);
+      setIsGameOver(true);
     }
   };
 
+  // Resets all state
   const resetGame = () => {
-    setGameOver(false);
+    setIsGameOver(false);
     setBoard([
       [undefined, undefined, undefined],
       [undefined, undefined, undefined],
       [undefined, undefined, undefined],
     ]);
-    setCrossesTurn(true);
-    setWinner(undefined);
+    setIsCrossesTurn(true);
+    setWinningPlayer(undefined);
   };
 
+  // Generates the status text (this has no business beign here lol)
   const statusText = () => {
-    if (gameOver) {
-      if (!winner) {
+    if (isGameOver) {
+      if (!winningPlayer) {
         return "Tie!";
       } else {
-        return crossesTurn ? "Winner: O" : "Winner: X";
+        return isCrossesTurn ? "Winner: O" : "Winner: X";
       }
     } else {
-      return crossesTurn ? "Current Turn: X" : "Current Turn: O";
+      return isCrossesTurn ? "Current Turn: X" : "Current Turn: O";
     }
   };
+
+  // Responds to the board changing and toggles the turn
+  useEffect(() => {
+    if (!board.flat().every((square: SquareContent) => !square)) {
+      isGameEnd();
+      setIsCrossesTurn(!isCrossesTurn);
+    }
+  }, [board]);
+
+  // Checks if it's the CPU's turn, and plays a move if it is
+  useEffect(() => {
+    if (!board.flat().every((square: SquareContent) => !square)) {
+      const shouldRobot =
+          !isCrossesTurn &&
+          !board.flat().every((square: SquareContent) => square) &&
+          gameMode === "SINGLE_PLAYER" &&
+          !isGameOver;
+      if (shouldRobot) mrRobot(board, setBoard);
+    }
+  }, [isCrossesTurn]);
 
   const data = {
     gameMode,
     board,
-    crossesTurn,
-    gameOver,
+    crossesTurn: isCrossesTurn,
+    gameOver: isGameOver,
     setBoard,
     resetGame,
     statusText,

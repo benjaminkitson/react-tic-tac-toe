@@ -11,7 +11,7 @@ function Row({ row, squares }: RowProps) {
   return (
     <div className="inline-grid grid-cols-3 gap-4 w-fit">
       {squares.map((square, i) => (
-        <Square col={i} content={square} row={row} />
+        <Square col={i} content={square} row={row} key={row + i}/>
       ))}
     </div>
   );

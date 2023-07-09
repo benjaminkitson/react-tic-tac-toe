@@ -1,12 +1,13 @@
 import React, { useContext } from "react";
 import { RxCross1, RxCircle } from "react-icons/rx";
+
 import { AppContext } from "../AppContext";
 import { BoardType, SquareContent } from "../Content";
 
 type SquareProps = {
   content: SquareContent;
   row: number;
-  col: number;
+  col: number
 };
 
 function Square({ content, row, col }: SquareProps) {
@@ -32,8 +33,9 @@ function Square({ content, row, col }: SquareProps) {
     <div
       className={`flex justify-center items-center text-9xl ${
         gameOver || content ? "" : "hover:bg-blue-300 hover:cursor-pointer"
-      } square w-48 h-48  border border-gray-400 rounded-xl bg-blue-100`}
+      } square w-48 h-48 border border-gray-400 rounded-xl bg-blue-100`}
       onClick={() => markSquare(row, col)}
+      data-testid={`${row}-${col}`}
       // gameOver={gameOver}
     >
       {

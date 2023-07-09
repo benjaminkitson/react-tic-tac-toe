@@ -10,7 +10,7 @@ function Board() {
     <>
       <div className="w-auto grid grid-rows-3 gap-4">
         {board.map((row, i) => (
-          <Row row={i} squares={row} />
+          <Row row={i} squares={row} key={i}/>
         ))}
       </div>
       <Button buttonColor="blue" buttonSize="lg" onClick={() => resetGame()}>

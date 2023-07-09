@@ -4,3 +4,5 @@
 /public/bundle.js.LICENSE.txt
 /public/bundle.js.map
 /js
+.DS_Store
+.idea/
