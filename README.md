@@ -8,4 +8,6 @@ The two-player mode is fairly self explanatory - the turns alternate until eithe
 
 The one-player mode is more interesting - at present, the user will start, playing as 'X'. The cpu will respond to the game state, and both actively try to win, while 'defending' itself when it detects that the user is about to win. At present there is no option for the cpu to start - that will come later.
 
+Deployed at tic-tac-toe.benjaminkitson.com
+
 Cheers for looking!
